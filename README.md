@@ -76,11 +76,6 @@ Price: 20000.0 SAR
 - [Faris Al Zahrani](https://github.com/nxrzs)
 - [Hisham Saydawi](https://github.com/xAGS1)
 
-## Division of Work
-
-- Mohanad: Responsible for program development and implementation.
-- Faris: Responsible for compiling the report and providing insights and contributing to programming.
-- Hisham: Responsible for generating the program idea and contributing to programming.
 
 ## Note
 
