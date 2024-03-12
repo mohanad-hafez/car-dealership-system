@@ -70,7 +70,7 @@ Price: 20000.0 SAR
 ## Team Members
 
 - [Mohanad Hafez](https://github.com/mohanad-hafez)
-- Faris Al Zahrani
+- [Faris Al Zahrani](https://github.com/nxrzs)
 - Hisham Saydawi
 
 ## Division of Work
