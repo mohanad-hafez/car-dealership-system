@@ -80,6 +80,5 @@ Price: 20000.0 SAR
 
 ## Note
 
-- The code adheres to proper indentation, comments, and naming conventions.
 - The designed system will be utilized in the subsequent phases of the project.
 
