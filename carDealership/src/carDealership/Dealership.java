@@ -159,16 +159,18 @@ public class Dealership {
 		
 		for(int i=0; i< nv; i++) {
 			if(inventory[i] instanceof Car) {
-			if(((Car)inventory[i]).getType().equalsIgnoreCase(s)) {
-				types[counter++] = (Car)inventory[i];
-				}
+				if(((Car)inventory[i]).getType().equalsIgnoreCase(s)) {
+					types[counter++] = (Car)inventory[i];
+					}
 			}
 		}
 		if (counter ==0) {
-			System.out.println("Sorry didn't find type with "+ s);
+			System.out.println("Sorry didn't find car with type: "+ s);
 		}
 		return types;
 	}
+	
+	//End
 	
 	
 	

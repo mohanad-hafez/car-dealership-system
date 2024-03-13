@@ -282,26 +282,26 @@ public class Main {
         m.setHandlebarType(handlebarType);
 
     }
-    public static void searchVehicleMenu() {
-    	if(!(dealership.isEmpty())) {
-    		
-    	
-    	System.out.println("Enter type: ");
-    	String s = input.nextLine();
-    	
-     Car[] v = dealership.searchCar(s);
-     if(v != null) {
-    	 int total = 0;
-    	 total = v.length;
-     System.out.printf( "Total found: [%d]\n",total);
-     for(int i =0;i< v.length;i++) {
-    	v[i].displayInfo();
-    	System.out.println(); 
-     }
-     }
-    	}else
-    	System.out.println("Sorry the inventory is empty.");
-    }
+   public static void searchVehicleMenu() {
+		if (!(dealership.isEmpty())) {
+
+			System.out.println("Enter type: ");
+			String s = input.nextLine();
+
+			Car[] v = dealership.searchCar(s);
+			int total = 0;
+			if (v != null) {
+				for (int i = 0; i < v.length; i++) {
+					if (v[i] != null) {
+						v[i].displayInfo();
+						System.out.println();
+						total++;
+					}
+				}
+			}System.out.printf("Total found: [%d]\n", total);
+		} else
+			System.out.println("Sorry the inventory is empty.");
+	}
     public static void changeColorMenu() {
   	  System.out.println("\n-------------------------------------------\n");
         System.out.println("Add a Vehicle");
