@@ -153,6 +153,27 @@ public class Dealership {
 	        System.out.println("-------------------");
 	    }
 	}
+	public Car[] searchCar(String s) {  // Search car using type
+		Car  types[] = new Car[getTotalCars()];
+		int counter = 0;
+		
+		for(int i=0; i< nv; i++) {
+			if(inventory[i] instanceof Car) {
+			if(((Car)inventory[i]).getType().equalsIgnoreCase(s)) {
+				types[counter++] = (Car)inventory[i];
+				}
+			}
+		}
+		if (counter ==0) {
+			System.out.println("Sorry didn't find type with "+ s);
+		}
+		return types;
+	}
+	
+	
+	
+	
+	
 	
 }
 
