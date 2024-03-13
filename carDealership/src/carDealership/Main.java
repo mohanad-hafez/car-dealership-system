@@ -10,16 +10,18 @@ public class Main {
 
         System.out.println("Welcome to the Dealership System!");
         while (true) {
-            System.out.println("\nChoose an option:");
-            System.out.println("1. Display all vehicles");
-            System.out.println("2. Add a vehicle");
-            System.out.println("3. Sell a vehicle");
-            System.out.println("4. Remove a vehicle");
-            System.out.println("5. Edit a vehicle");
-            System.out.println("6. Sales history");
-            System.out.println("7. Exit");
-            System.out.print("Enter your choice: ");
-            String choice = input.nextLine();
+        	 System.out.println("\nChoose an option:");
+             System.out.println("1. Display all vehicles");
+             System.out.println("2. Add a vehicle");
+             System.out.println("3. Sell a vehicle");
+             System.out.println("4. Remove a vehicle");
+             System.out.println("5. Edit a vehicle");
+             System.out.println("6. Sales history");
+             System.out.println("7. Search type");
+             System.out.println("8. Change text color");
+             System.out.println("9. Exit");
+             System.out.print("Enter your choice: ");
+             String choice = input.nextLine();
 
             switch (choice) {
                 case "1":
@@ -48,7 +50,14 @@ public class Main {
                 case "6":
                     dealership.displaySalesHistory();
                     break;
+                case "8":
+                	changeColorMenu();
+                	break;
                 case "7":
+                	searchVehicleMenu();
+         
+                	break;
+                case "9":
                     System.out.println("Exiting the Dealership System. Goodbye!");
                     return;
                 default:
@@ -273,4 +282,56 @@ public class Main {
         m.setHandlebarType(handlebarType);
 
     }
+    public static void searchVehicleMenu() {
+    	if(!(dealership.isEmpty())) {
+    		
+    	
+    	System.out.println("Enter type: ");
+    	String s = input.nextLine();
+    	
+     Car[] v = dealership.searchCar(s);
+     if(v != null) {
+    	 int total = 0;
+    	 total = v.length;
+     System.out.printf( "Total found: [%d]\n",total);
+     for(int i =0;i< v.length;i++) {
+    	v[i].displayInfo();
+    	System.out.println(); 
+     }
+     }
+    	}else
+    	System.out.println("Sorry the inventory is empty.");
+    }
+    public static void changeColorMenu() {
+  	  System.out.println("\n-------------------------------------------\n");
+        System.out.println("Add a Vehicle");
+        System.out.println("\nChoose an option:");
+        System.out.println("1. Blue");
+        System.out.println("2. Green");
+        System.out.println("3. White");
+        System.out.println("4. Exit");
+  	 String choice = input.nextLine();
+
+       switch (choice) {
+           case "1":
+          	 System.out.println("\u001B[36m"); // Changes color to Blue.
+               break;
+           case "2":
+          	 System.out.println("\u001B[32m"); // Changes color to Green.
+          	
+               break;
+           case "3":
+          	 System.out.println("\u001B[0m"); // Changes color back to white.
+          	
+               break;
+           case "4":
+               return;
+           default:
+               System.out.println("Invalid choice. Please try again.");
+  }
+  
+  }
+    
+    
+    
 }

@@ -14,6 +14,7 @@ public abstract class Vehicle {
 		this.year = year;
 		setPrice(price);
 		this.id = nextId++;
+		
 	}
 	
 	public abstract void displayInfo();
