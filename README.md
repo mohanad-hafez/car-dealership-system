@@ -27,6 +27,27 @@ The system provides the following functionalities:
 - Removing vehicles from the inventory.
 - Editing vehicle information (make, model, color, year, price, type, handlebar type).
 
+## Usage
+
+Before running the program, ensure you have Java Development Kit (JDK) installed on your system. Then, follow these steps to compile and execute the Car Dealership System:
+
+1. **Compile the Program**: Open your command-line interface, navigate to the project directory containing the source files, and execute the following command to compile the Java files:
+
+    ```bash
+    javac carDealership/*.java
+    ```
+
+    This command will compile all Java files in the `carDealership` package.
+
+2. **Run the Program**: After successful compilation, execute the following command to run the Main class:
+
+    ```bash
+    java carDealership.Main
+    ```
+
+    This command will start the program and display the main menu for interacting with the Car Dealership System.
+
+
 ## Implementation Details
 
 The implementation adheres to the project requirements, including:
@@ -82,3 +103,6 @@ Price: 20000.0 SAR
 
 - The designed system will be utilized in the subsequent phases of the project.
 
+## Note on Limitations
+
+Please note that this implementation has fixed sizes for the inventory and sales arrays, which may limit the number of vehicles that can be stored and sales records that can be maintained. Currently, the maximum inventory size is set to 20 vehicles, and the sales history can accommodate up to double that number of transactions. If your requirements exceed these limits, you may need to modify the code accordingly.
