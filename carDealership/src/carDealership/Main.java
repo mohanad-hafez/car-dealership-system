@@ -9,6 +9,7 @@ public class Main {
 	public static void main(String args[]) {
 
 		System.out.println("Welcome to the Dealership System!");
+		dealership.getInfo(); // Prints dealership's name,location,inventory size.
 		while (true) {
 			System.out.println("\nChoose an option:");
 			System.out.println("1. Display all vehicles");
@@ -329,7 +330,7 @@ public class Main {
 
 			break;
 		case "3":
-			System.out.println("\u001B[0m"); // Changes color back to white.
+			System.out.println("\u001B[0m"); // Changes color back to White.
 
 			break;
 		case "4":
@@ -347,14 +348,14 @@ public class Main {
 			String budget = input.nextLine();
 
 			for (int i = 0; i < budget.length(); i++) {
-				if (budget.charAt(i) < 48 || budget.charAt(i) > 57) {
-					System.out.println("Invaild Input, Please enter numbers/postive numbers.");
+				if (budget.charAt(i) < 48 || budget.charAt(i) > 57) { // Ascii digits from 0 to 9.
+					System.out.println("Invaild Input, Please enter postive numbers only.");
 					return;
 				}
 			}
 			{
-				int x = dealership.carBudget(Double.parseDouble(budget));
-				System.out.printf("Total [%d]\n", x );
+				int total = dealership.carBudget(Double.parseDouble(budget)); // Calling carBudget Method.
+				System.out.printf("Total [%d]\n", total );
 			}
 
 		}else

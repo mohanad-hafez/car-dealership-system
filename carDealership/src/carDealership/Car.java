@@ -1,7 +1,7 @@
 package carDealership;
 
 public class Car extends Vehicle{
-	String type;
+	private String type;
 	
 	public Car(String make, String model, String color, int year, double price, String type) {
 		super(make, model, color, year, price);

@@ -1,7 +1,8 @@
 package carDealership;
 
 public class Motorcycle extends Vehicle{
-	String handlebarType;
+	private String handlebarType;
+	
 	public Motorcycle(String make, String model, String color, int year, double price, String handlebarType) {
 		super(make, model, color, year, price);
 		this.handlebarType = handlebarType;
