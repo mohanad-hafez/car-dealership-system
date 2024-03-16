@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 	public static Scanner input = new Scanner(System.in);
-	public static Dealership dealership = new Dealership("Saidawi Motors", "Riyadh", 2);
+	public static Dealership dealership = new Dealership("Saidawi Motors", "Riyadh", 20);
 
 	public static void main(String args[]) {
 
