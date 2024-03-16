@@ -88,7 +88,7 @@ Price: 20000.0 SAR
 -------------------
 ```
 ## UML
-![Car Dealership drawio](https://github.com/mohanad-hafez/car-dealership-system/assets/160021417/3864e451-87f8-42da-ac65-981736494e05)
+![Car Dealership drawio (1)](https://github.com/mohanad-hafez/car-dealership-system/assets/160021417/d538a3fc-6123-4bc2-b69b-5c4d9ed0b3cc)
 
 
 
