@@ -26,6 +26,8 @@ The system provides the following functionalities:
 - Selling vehicles to customers and maintaining a sales history.
 - Removing vehicles from the inventory.
 - Editing vehicle information (make, model, color, year, price, type, handlebar type).
+- Searching for cars by type.
+- Finding cars within a specified budget.
 
 ## Usage
 
@@ -61,6 +63,11 @@ The implementation adheres to the project requirements, including:
 
 Below is a sample run of the program:
 ```
+Welcome to the Dealership System!
+Name: [Saidawi Motors]
+Location: [Riyadh]
+Inventory Size: [20]
+
 Choose an option:
 1. Display all vehicles
 2. Add a vehicle
@@ -68,7 +75,10 @@ Choose an option:
 4. Remove a vehicle
 5. Edit a vehicle
 6. Sales history
-7. Exit
+7. Search type
+8. Find car using budget
+9. Change text color
+10. Exit
 Enter your choice: 1
 Inventory Details:
 Total inventory value: 122000.0
@@ -86,9 +96,10 @@ Color: Blue
 Handlebar type: Standard
 Price: 20000.0 SAR
 -------------------
+Size: [2/20]
 ```
 ## UML
-![Car Dealership drawio (1)](https://github.com/mohanad-hafez/car-dealership-system/assets/160021417/d538a3fc-6123-4bc2-b69b-5c4d9ed0b3cc)
+![Car Dealership UML Diagram](https://github.com/mohanad-hafez/car-dealership-system/assets/160021417/d538a3fc-6123-4bc2-b69b-5c4d9ed0b3cc)
 
 
 
