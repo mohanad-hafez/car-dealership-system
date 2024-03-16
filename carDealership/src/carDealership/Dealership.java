@@ -170,9 +170,35 @@ public class Dealership {
 		return types;
 	}
 	
-	//End
+	
+	public int carBudget(double budget) {
+		int total = 0;
+		boolean checked = true; // controls the message for when budget less than. 
+		for(int i=0; i< nv; i++) {
+			if(inventory[i] instanceof Car) {
+				if(((Car)inventory[i]).getPrice() <= budget) {
+					((Car)inventory[i]).displayInfo();
+					System.out.println("---------------------");
+					total++;
+				}
+				else {
+					checked =false;
+					
+				}
+			}
+		}if(total == 0) {
+			String string = "Sorry there are no cars.";
+			if(!checked)
+				System.out.println(string + " less than or equal the budget enterd.");
+			
+			
+			}return total;
+	}
 	
 	
+	
+	
+	// Dealership End
 	
 	
 	
