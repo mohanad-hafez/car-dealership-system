@@ -1,6 +1,8 @@
 package carDealership;
 
-public abstract class Vehicle {
+import java.io.Serializable;
+
+public abstract class Vehicle implements Serializable{
 	protected String make, model, color;
 	protected int year;
 	protected double price;

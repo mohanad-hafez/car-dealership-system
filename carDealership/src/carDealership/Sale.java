@@ -1,7 +1,8 @@
 package carDealership;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Sale {
+public class Sale implements Serializable{
 	private Vehicle vehicle;
 	private String buyerName;
 	private String buyerContact;
