@@ -1,18 +1,16 @@
 package carDealership;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.swing.JFrame;
 
-public class Dealership implements Serializable{
+public class Dealership {
 	private String name;
 	private String location;
 	private int nv;
 	private int ns;
 	private Vehicle[] inventory;
 	private Sale[] sales;
-	private int nextId;
 
 	
 	
@@ -25,7 +23,6 @@ public class Dealership implements Serializable{
 		sales = new Sale[maxInventory * 2];
 		nv = 0;
 		ns = 0;
-		nextId = 0;
 	}
 
 	public void getInfo() {
@@ -39,18 +36,12 @@ public class Dealership implements Serializable{
 		if (nv == inventory.length) {
 			return false;
 		}
-		
-		
 		if (vehicle instanceof Car) {
-			Car c = new Car((Car) vehicle);
-			c.setId(nextId++);
-			inventory[nv++] = c;
+			inventory[nv++] = new Car((Car) vehicle);
 		}
 
 		if (vehicle instanceof Motorcycle) {
-			Motorcycle m = new Motorcycle((Motorcycle) vehicle);
-			m.setId(nextId++);
-			inventory[nv++] = m;
+			inventory[nv++] = new Motorcycle((Motorcycle) vehicle);
 		}
 
 		return true;

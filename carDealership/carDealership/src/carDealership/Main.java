@@ -1,31 +1,14 @@
 package carDealership;
 import java.util.Scanner;
-import java.io.*;
 
 public class Main {
 	public static Scanner input = new Scanner(System.in);
-	public static Dealership dealership;
+	public static Dealership dealership = new Dealership("Saidawi Motors", "Riyadh", 20);
 
-	public static void main(String args[]) throws IOException, ClassNotFoundException {
-		
-		// --------------- Load save file if exists, launch new dealership page if it doesn't  ----------------
-		File saveFile = new File("save.data");
-
+	public static void main(String args[]) {
 		
 		
-		if(saveFile.exists()) {
-			FileInputStream inFileStream = new FileInputStream(saveFile);
-			ObjectInputStream inObjStream = new ObjectInputStream(inFileStream);
-			dealership = (Dealership) inObjStream.readObject(); 
-			inObjStream.close();
-			Frame myFrame = new Frame();
-		}
-		else {
-			NewDealershipPage newDealershipPage = new NewDealershipPage();
-		}
-		
-		
-		
+		new Frame();
 		
 
 		
@@ -390,32 +373,6 @@ public class Main {
 
 		}else
 			System.out.println("Sorry the inventory is empty.");
-	}
-	
-	public static void createDealership(String name) {
-		dealership = new Dealership(name, "Riyadh", 20);
-	}
-	
-	public static void save() throws IOException {
-		File saveFile = new File("save.data");
-		FileOutputStream outFileStream = null;
-		try {
-			outFileStream = new FileOutputStream(saveFile);
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		ObjectOutputStream outObjStream = null;
-		try {
-			 outObjStream = new ObjectOutputStream(outFileStream);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		outObjStream.writeObject(dealership);
-		outObjStream.close();
-		
 	}
 	
 	// Main end.
