@@ -7,7 +7,7 @@ public abstract class Vehicle implements Serializable{
 	protected int year;
 	protected double price;
 	protected int id;
-	private static int nextId;
+	//private static int nextId;
 	
 	public Vehicle(String make, String model, String color, int year, double price) {
 		this.make = make;
@@ -15,8 +15,6 @@ public abstract class Vehicle implements Serializable{
 		this.color = color;
 		this.year = year;
 		setPrice(price);
-		this.id = nextId++;
-		
 	}
 	
 	public abstract void displayInfo();
@@ -80,11 +78,4 @@ public abstract class Vehicle implements Serializable{
 		this.id = id;
 	}
 
-	public static int getNextId() {
-		return nextId;
-	}
-
-	public static void setNextId(int nextId) {
-		Vehicle.nextId = nextId;
-	}
 }
