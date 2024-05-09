@@ -195,72 +195,7 @@ public class Frame extends JFrame implements ActionListener {
 
 	}
 
-	private void displayAndWriteDataToFile() {
-		String[] options = { "Inventory", "Sales History", "Both" };
-		int choice = JOptionPane.showOptionDialog(null, "Choose the data to write to file:", "Write to File",
-				JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
-		if (choice == JOptionPane.CLOSED_OPTION) {
-			return;
-		}
-		StringBuilder dataToDisplay = new StringBuilder();
-
-		if (choice == 0 || choice == 2) {
-			if (Main.dealership.isEmpty()) {
-				dataToDisplay.append("Inventory is empty!\n\n");
-			} else {
-				dataToDisplay.append("").append(Main.dealership.displayAlls()).append("");
-			}
-		}
-		if (choice == 1 || choice == 2) {
-			dataToDisplay.append("\n").append(Main.dealership.showSalesHistory());
-		}
-
-		JTextArea textArea = new JTextArea(dataToDisplay.toString());
-		textArea.setEditable(false);
-		JScrollPane scrollPane = new JScrollPane(textArea);
-		scrollPane.setPreferredSize(new Dimension(600, 400));
-
-		String fileName = JOptionPane.showInputDialog(null, "Enter the file name:");
-		if (fileName == null || fileName.trim().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Invalid file name. Please enter a valid file name.");
-			return;
-		}
-		try (FileWriter writer = new FileWriter(fileName)) {
-			writer.write(dataToDisplay.toString());
-			JOptionPane.showMessageDialog(null, "Data successfully written to file: " + fileName);
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Error writing to file: " + fileName);
-			e.printStackTrace();
-		}
-		JOptionPane.showMessageDialog(null, scrollPane, "Inventory and Sales History", JOptionPane.PLAIN_MESSAGE);
-	}
-
-	private void readSalesHistoryFromFile() {
-		fileName = JOptionPane.showInputDialog(null, "Enter the file name:");
-		if (fileName == null || fileName.trim().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Invalid file name. Please enter a valid file name.");
-			return;
-		}
-		textArea = new JTextArea(20, 40);
-		textArea.setEditable(false);
-		scrollPane = new JScrollPane(textArea);
-
-		try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-			StringBuilder salesHistory = new StringBuilder();
-			String line;
-			while ((line = reader.readLine()) != null) {
-				salesHistory.append(line).append("\n");
-			}
-			textArea.setText(salesHistory.toString());
-		} catch (FileNotFoundException e) {
-			JOptionPane.showMessageDialog(null, "File not found: " + fileName);
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Error reading from file: " + fileName);
-			e.printStackTrace();
-		}
-
-		JOptionPane.showMessageDialog(null, scrollPane, "Sales History from File", JOptionPane.PLAIN_MESSAGE);
-	}
+	
 
 	private void displayInventory() {
 		if (Main.dealership.isEmpty()) {
