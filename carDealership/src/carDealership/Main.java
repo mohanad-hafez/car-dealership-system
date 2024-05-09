@@ -392,7 +392,10 @@ public class Main {
 			System.out.println("Sorry the inventory is empty.");
 	}
 	
-	public static void createDealership(String name, String location, int capacity) {
+	public static void createDealership(String name, String location, int capacity) throws IllegalCapacityException {
+		if(capacity < 1 || capacity > 100) {
+			throw new IllegalCapacityException();
+		}
 		dealership = new Dealership(name, location, capacity);
 	}
 	

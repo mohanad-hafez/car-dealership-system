@@ -115,6 +115,12 @@ public class FirstLaunchPage extends JFrame {
 		lblNewLabel_3.setBounds(319, 249, 291, 16);
 		contentPane.add(lblNewLabel_3);
 		lblNewLabel_3.setVisible(false);
+		
+		JLabel lblNewLabel_4 = new JLabel("Capacity must be between 1 - 100");
+		lblNewLabel_4.setForeground(new Color(255, 128, 128));
+		lblNewLabel_4.setBounds(319, 249, 266, 16);
+		contentPane.add(lblNewLabel_4);
+		lblNewLabel_4.setVisible(false);
 
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -126,7 +132,12 @@ public class FirstLaunchPage extends JFrame {
 					Frame myFrame = new Frame();
 				} catch (NumberFormatException ex) {
 					textField_1.setText("");
+					lblNewLabel_4.setVisible(false);
 					lblNewLabel_3.setVisible(true);
+				} catch(IllegalCapacityException ex2) {
+					textField_1.setText("");
+					lblNewLabel_3.setVisible(false);
+					lblNewLabel_4.setVisible(true);
 				}
 			}
 		});
