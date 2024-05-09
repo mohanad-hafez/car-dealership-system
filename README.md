@@ -1,21 +1,24 @@
-# Car Dealership System (Phase 1)
+# Car Dealership System (Phase 2)
 
-This repository contains the first phase of the **Car Dealership System**, a Java project developed for the CSC 113 course during the second semester of 1445. The project aims to provide a comprehensive understanding of Java programming concepts, including inheritance, polymorphism, abstract classes, and array manipulation.
+This repository contains the second phase of the **Car Dealership System**, a Java project developed for the CSC 113 course during the second semester of 1445. This phase enhances the program by handling exceptions, using files for data storage, and providing a graphical user interface (GUI) using Java Swing components.
 
 ## Project Overview
 
-The Car Dealership System is designed to simulate the management of a car dealership. It allows users to add, remove, sell, and edit vehicles within the dealership's inventory. The system also maintains a sales history to track all vehicle transactions.
+The Car Dealership System simulates the management of a car dealership, allowing users to perform various operations such as adding, removing, selling, and editing vehicles within the dealership's inventory. The system also maintains a sales history to track all vehicle transactions.
 
 ## Project Structure
 
-The project is structured into multiple Java classes:
+The project is structured into multiple Java classes, including:
 
-1. **Vehicle**: An abstract class representing a generic vehicle with common attributes such as make, model, color, year, and price.
-2. **Car**: A subclass of Vehicle, representing a car with additional attributes such as type.
-3. **Motorcycle**: Another subclass of Vehicle, representing a motorcycle with specific attributes such as handlebar type.
-4. **Dealership**: The main class handling dealership operations including managing inventory, sales, and displaying information.
-5. **Sale**: A class representing a sale transaction, including details of the vehicle sold, buyer's name, contact, and sale date.
-6. **Main**: The entry point of the program containing the main menu and user interaction functionalities.
+- **Vehicle**: An abstract class representing a generic vehicle with common attributes.
+- **Car**: A subclass of Vehicle, representing a car with additional attributes.
+- **Motorcycle**: Another subclass of Vehicle, representing a motorcycle with specific attributes.
+- **Dealership**: The main class handling dealership operations.
+- **Sale**: A class representing a sale transaction.
+- **Main**: The entry point of the program containing the main menu and user interaction functionalities.
+- **Frame**: A class implementing the GUI for user interaction.
+- **VehicleMenu**: A class providing GUI forms for adding vehicles.
+- **FirstLaunchPage**: A class for the initial launch GUI to set up dealership information.
 
 ## Functionality
 
@@ -25,9 +28,26 @@ The system provides the following functionalities:
 - Adding new vehicles (cars or motorcycles) to the inventory.
 - Selling vehicles to customers and maintaining a sales history.
 - Removing vehicles from the inventory.
-- Editing vehicle information (make, model, color, year, price, type, handlebar type).
+- Editing vehicle information.
 - Searching for cars by type.
 - Finding cars within a specified budget.
+
+## Exception Handling
+
+### Checked Exceptions
+- Checked exceptions were handled when dealing with files for saving and loading data. Methods that interact with files are declared to throw IOException, and appropriate try-catch blocks are used to handle potential file-related exceptions.
+
+### Unchecked Exceptions
+- **IllegalCapacityException**: An unchecked exception used to handle invalid input for inventory capacity. It is thrown when the user inputs a capacity that is not within the valid range (1-100).
+- **NumberFormatException**: An unchecked exception used to handle invalid input for inventory capacity in the new launch page. It is thrown when the user inputs a non-numeric value for inventory capacity.
+
+## File Handling
+
+Files are used for saving and loading data using Java's data stream (ObjectInputStream and ObjectOutputStream). The entire Dealership object is serialized and stored in a binary file named "save.data".
+
+## Graphical User Interface (GUI)
+
+The GUI is implemented using Java Swing components, including JFrame, JButton, JLabel, JTextField, JPanel, JMenuBar, JMenuItem, and JTextArea. The GUI provides an intuitive interface for users to interact with the Car Dealership System.
 
 ## Usage
 
@@ -49,55 +69,11 @@ Before running the program, ensure you have Java Development Kit (JDK) installed
 
     This command will start the program and display the main menu for interacting with the Car Dealership System.
 
-
-## Implementation Details
-
-The implementation adheres to the project requirements, including:
-
-- Proper use of inheritance with Vehicle, Car, and Motorcycle classes.
-- Utilization of abstract class (Vehicle) and polymorphic methods.
-- Array manipulation for managing the dealership's inventory.
-- User-friendly menu-based interaction through the Main class.
-
 ## Sample Run
 
 Below is a sample run of the program:
-```
-Welcome to the Dealership System!
-Name: [Saidawi Motors]
-Location: [Riyadh]
-Inventory Size: [20]
 
-Choose an option:
-1. Display all vehicles
-2. Add a vehicle
-3. Sell a vehicle
-4. Remove a vehicle
-5. Edit a vehicle
-6. Sales history
-7. Search type
-8. Find car using budget
-9. Change text color
-10. Exit
-Enter your choice: 1
-Inventory Details:
-Total inventory value: 122000.0
--------------------
-ID: 1
-Car: Toyota Camry 2022
-Color: Black
-Type: Sedan
-Price: 102000.0 SAR
--------------------
--------------------
-ID: 3
-Motorcycle: Yamaha MT-07 2021
-Color: Blue
-Handlebar type: Standard
-Price: 20000.0 SAR
--------------------
-Size: [2/20]
-```
+
 ## UML
 ![Car Dealership UML Diagram](https://github.com/mohanad-hafez/car-dealership-system/assets/160021417/d538a3fc-6123-4bc2-b69b-5c4d9ed0b3cc)
 
@@ -109,11 +85,3 @@ Size: [2/20]
 - [Faris Al Zahrani](https://github.com/nxrzs)
 - [Hisham Saydawi](https://github.com/xAGS1)
 
-
-## Note
-
-- The designed system will be utilized in the subsequent phases of the project.
-
-## Note on Limitations
-
-Please note that this implementation has fixed sizes for the inventory and sales arrays, which may limit the number of vehicles that can be stored and sales records that can be maintained. Currently, the maximum inventory size is set to 20 vehicles, and the sales history can accommodate up to double that number of transactions. If your requirements exceed these limits, you may need to modify the code accordingly.
