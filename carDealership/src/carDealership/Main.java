@@ -21,7 +21,7 @@ public class Main {
 			Frame myFrame = new Frame();
 		}
 		else {
-			NewDealershipPage newDealershipPage = new NewDealershipPage();
+			FirstLaunchPage newPage = new FirstLaunchPage();
 		}
 		
 		
@@ -392,8 +392,8 @@ public class Main {
 			System.out.println("Sorry the inventory is empty.");
 	}
 	
-	public static void createDealership(String name) {
-		dealership = new Dealership(name, "Riyadh", 20);
+	public static void createDealership(String name, String location, int capacity) {
+		dealership = new Dealership(name, location, capacity);
 	}
 	
 	public static void save() throws IOException {
