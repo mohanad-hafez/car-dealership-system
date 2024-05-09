@@ -34,11 +34,13 @@ The system provides the following functionalities:
 
 ## Exception Handling
 
+### User Defined Exceptions
+- **IllegalCapacityException**: An unchecked exception used to handle invalid input for inventory capacity. It is thrown when the user inputs a capacity that is not within the valid range (1-100).
+
 ### Checked Exceptions
 - Checked exceptions were handled when dealing with files for saving and loading data. Methods that interact with files are declared to throw IOException, and appropriate try-catch blocks are used to handle potential file-related exceptions.
 
 ### Unchecked Exceptions
-- **IllegalCapacityException**: An unchecked exception used to handle invalid input for inventory capacity. It is thrown when the user inputs a capacity that is not within the valid range (1-100).
 - **NumberFormatException**: An unchecked exception used to handle invalid input for inventory capacity in the new launch page. It is thrown when the user inputs a non-numeric value for inventory capacity.
 
 ## File Handling
@@ -85,3 +87,8 @@ Below is a sample run of the program:
 - [Faris Al Zahrani](https://github.com/nxrzs)
 - [Hisham Saydawi](https://github.com/xAGS1)
 
+## Possible Improvements
+
+- Enhance user interface design for better user experience.
+- Implement user authentication and authorization for secure access.
+- Utilize a linked list data structure instead of an array for the inventory to enable dynamic resizing without specifying a fixed size.
