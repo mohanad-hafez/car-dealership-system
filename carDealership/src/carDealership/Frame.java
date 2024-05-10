@@ -13,12 +13,15 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
+import java.awt.Toolkit;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -37,7 +40,7 @@ public class Frame extends JFrame implements ActionListener {
 	private Container con;
 	private JFrame jf1;
 	// ---------Buttons--------
-	private JButton jbutton1, jbutton2, jbutton3, jbutton4, jbutton5, jbutton6, jbutton7;
+	private JButton jbutton1, jbutton2, jbutton3, jbutton4, jbutton5, jbutton6, jbutton7, jbutton8;
 
 	// =========Files==========
 	private String fileName;
@@ -48,29 +51,43 @@ public class Frame extends JFrame implements ActionListener {
 	private JMenu fileMenu;
 	private JMenuItem save;
 	private JMenuItem deleteDealership;
-	
 
+	private ImageAnimation ia;
 	// -----------Labels---------
 	private JLabel jl1;
+	private JLabel jl2;
 
 	public Frame() {
 		jf1 = new JFrame();
-		// ------------- Jmenu ------------
-		 menuBar = new JMenuBar();
-		 fileMenu = new JMenu("File");
-		 save = new JMenuItem("save");
-		 deleteDealership = new JMenuItem("delete dealership");
+		con = new Container();
+
 		
+		
+		
+	
+	//===== secret stuff ======	
+		SwingUtilities.invokeLater(() -> {
+			ia = new ImageAnimation();
+			ia.setVisible(true);
+			jf1.add(ia);
+
+		});
+
+		// ------------- Jmenu ------------
+		menuBar = new JMenuBar();
+		fileMenu = new JMenu("File");
+		save = new JMenuItem("save");
+		deleteDealership = new JMenuItem("delete dealership");
+
 		fileMenu.add(save);
 		fileMenu.add(deleteDealership);
-		
-		menuBar.add(fileMenu);
-		
-		jf1.setJMenuBar(menuBar);
 
+		menuBar.add(fileMenu);
+
+		jf1.setJMenuBar(menuBar);
+	
 		// jm1 = new JMenu("Read");
 		// jm2 = new JMenu("Write");
-		con = new Container();
 
 		// ----------jbuttons stuff-------------
 		jbutton1 = new JButton("Display all");
@@ -80,8 +97,12 @@ public class Frame extends JFrame implements ActionListener {
 		jbutton5 = new JButton("Edit a vehicle");
 		jbutton6 = new JButton("Sales history");
 		jbutton7 = new JButton("Search car (Budget)");
+		jbutton8 = new JButton("Dealership info");
+		
 		// jbutton1.setForeground(Color.white);
 
+		
+		
 		jbutton1.setForeground(new java.awt.Color(12, 101, 72));
 		jbutton3.setForeground(new java.awt.Color(1, 121, 72));
 		jbutton4.setForeground(Color.red);
@@ -93,6 +114,7 @@ public class Frame extends JFrame implements ActionListener {
 		jbutton5.setBackground(Color.decode("#C7CAFF"));
 		jbutton6.setBackground(Color.decode("#CDABEB"));
 		jbutton7.setBackground(Color.decode("#F6C2F3"));
+		jbutton8.setBackground(Color.decode("#FFD700"));
 
 		jbutton1.setBounds(20, 40, 150, 70);
 		jbutton2.setBounds(180, 40, 150, 70);
@@ -101,7 +123,9 @@ public class Frame extends JFrame implements ActionListener {
 		jbutton5.setBounds(660, 40, 150, 70);
 		jbutton6.setBounds(820, 40, 150, 70);
 		jbutton7.setBounds(980, 40, 150, 70);
-
+		
+		jbutton8.setBounds(500, 120, 150, 50);
+		
 		// ------------Labels-----------
 		jl1 = new JLabel("");
 
@@ -119,7 +143,8 @@ public class Frame extends JFrame implements ActionListener {
 		jf1.setVisible(true);
 		jf1.setBounds(0, 0, 1170, 600);
 		jf1.setResizable(false);
-
+		jf1.setIconImage(Toolkit.getDefaultToolkit().getImage(FirstLaunchPage.class.getResource("/images/icon.jpg")));
+		
 		jf1.add(jbutton1);
 		jf1.add(jbutton2);
 		jf1.add(jbutton3);
@@ -127,10 +152,10 @@ public class Frame extends JFrame implements ActionListener {
 		jf1.add(jbutton5);
 		jf1.add(jbutton6);
 		jf1.add(jbutton7);
+		jf1.add(jbutton8);
+		
 
-		// jf1.add(jb8);
-
-		jf1.add(jl1);
+		jf1.add(jl1); // do not remove!
 
 		// ---------------------------
 		jbutton1.addActionListener(this);
@@ -140,7 +165,7 @@ public class Frame extends JFrame implements ActionListener {
 		jbutton5.addActionListener(this);
 		jbutton6.addActionListener(this);
 		jbutton7.addActionListener(this);
-
+		jbutton8.addActionListener(this);
 		
 		save.addActionListener(this);
 		deleteDealership.addActionListener(this);
@@ -155,8 +180,12 @@ public class Frame extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == jbutton2) {
 			SwingUtilities.invokeLater(() -> {
+				if(!(Main.dealership.isFull())) {
 				VehicleMenu VehicleMenu = new VehicleMenu();
 				VehicleMenu.setVisible(true);
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Sorry, your inventory is Full!");
 			});
 			System.out.println("Adding...");
 		}
@@ -175,28 +204,55 @@ public class Frame extends JFrame implements ActionListener {
 		if (e.getSource() == jbutton7) {
 			budgetCarGUI();
 		}
-		
-		if(e.getSource() == save) {
+
+		if (e.getSource() == save) {
 			try {
 				Main.save();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			
 		}
-		
-		if(e.getSource() == deleteDealership) {
-			System.out.println("On bro I'm speaking fax");
-			File saveFile = new File("save.data");
-			if(saveFile.exists())
-				saveFile.delete();
-			jf1.dispose();
+
+		if (e.getSource() == deleteDealership) {
+		    int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the dealership?", "Confirmation", JOptionPane.YES_NO_OPTION);
+		    if (confirm == JOptionPane.YES_OPTION) {
+		        System.out.println("On bro I'm speaking fax");
+		        File saveFile = new File("save.data");
+		        if (saveFile.exists()) {
+		        	 saveFile.delete();
+		        }
+		           
+		        jf1.dispose();
+		    }
 		}
+		if(e.getSource() == jbutton8) {
+			displayDealerInfo();
+		}
+
 
 	}
 
 	
+	
+	
+	
+	private void displayDealerInfo() {
+	 JTextArea textArea = new JTextArea();
+     textArea.setText(Main.dealership.getInfoGUI()); 
+     textArea.setEditable(false);
 
+     // Wrap the text area in a scroll pane
+     JScrollPane scrollPane = new JScrollPane(textArea);
+
+     // Create a dialog to display the information
+     JOptionPane.showMessageDialog(null, scrollPane, "All Information", JOptionPane.PLAIN_MESSAGE);
+	
+	}
+	
+	
+	
 	private void displayInventory() {
 		if (Main.dealership.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Inventory is empty!");
@@ -230,7 +286,7 @@ public class Frame extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Couldn't sell vehicle.");
 			}
 		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid integer ID.");
+			JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid integer.");
 		}
 	}
 
@@ -241,29 +297,35 @@ public class Frame extends JFrame implements ActionListener {
 		scrollPane.setPreferredSize(new Dimension(400, 300));
 		JOptionPane.showMessageDialog(null, scrollPane, "Sales History", JOptionPane.PLAIN_MESSAGE);
 	}
+	
 
 	private void removeVehicleMenu() {
-		try {
-			String idString = JOptionPane.showInputDialog(null, "Enter the id of the vehicle:");
-			if (idString == null) { // checks if no input
-				return;
-			}
-			int id = Integer.parseInt(idString);
+	    try {
+	        String idString = JOptionPane.showInputDialog(null, "Enter the id of the vehicle:");
+	        if (idString == null) { // checks if no input
+	            return;
+	        }
+	        int id = Integer.parseInt(idString);
 
-			if (Main.dealership.getIndexFromId(id) == -1) {
-				JOptionPane.showMessageDialog(null, "Vehicle not found!");
-			} else {
-				Vehicle vehicle = Main.dealership.getVehicleFromId(id);
-				if (Main.dealership.removeVehicle(vehicle)) {
-					JOptionPane.showMessageDialog(null, "Vehicle removed successfully.");
-				} else {
-					JOptionPane.showMessageDialog(null, "Couldn't remove vehicle.");
-				}
-			}
-		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid integer ID.");
-		}
+	        if (Main.dealership.getIndexFromId(id) == -1) {
+	            JOptionPane.showMessageDialog(null, "Vehicle not found!");
+	        } else {
+	            Vehicle vehicle = Main.dealership.getVehicleFromId(id);
+	            int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this vehicle\nwith id: "+ id , "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+	            if (confirm == JOptionPane.YES_OPTION) {
+	                if (Main.dealership.removeVehicle(vehicle)) {
+	                    JOptionPane.showMessageDialog(null, "Vehicle removed successfully.");
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "Couldn't remove vehicle.");
+	                }
+	            }
+	        }
+	    } catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid integer.");
+	    }
 	}
+
+	
 
 	private void editVehicleMenu() {
 		try {
@@ -373,40 +435,50 @@ public class Frame extends JFrame implements ActionListener {
 		}
 	}
 
-	public void budgetCarGUI() { // ADD WHATS CAR WITHIN BUDGET HERE
-		JFrame frame = new JFrame("Budget for Cars");
-		frame.setSize(300, 150);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setLocationRelativeTo(null);
-		frame.setLayout(new GridLayout(3, 2));
-
-		JLabel budgetLabel = new JLabel("Enter Budget:");
-		JTextField budgetField = new JTextField();
-		JButton searchButton = new JButton("Check Budget");
-
-		searchButton.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				String budgetText = budgetField.getText();
-				try {
-					double budget = Double.parseDouble(budgetText);
-					if (budget < 0) {
-						JOptionPane.showMessageDialog(null, "Invalid input. Please enter a positive number.");
-						return;
-					}
-					int total = Main.dealership.carBudget(budget);
-					JOptionPane.showMessageDialog(null, "Total number of cars within budget: " + total);
-				} catch (NumberFormatException ex) {
-					JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid number.");
-				}
-			}
-		});
-		frame.add(budgetLabel);
-		frame.add(budgetField);
-		frame.add(searchButton);
-
-		frame.setVisible(true);
-
-	}
+	  public void budgetCarGUI() { // Search a CAR WITHIN a specific BUDGET.
+	        
+	        String budgetText = JOptionPane.showInputDialog(null, "Enter Budget:");
+	        if (budgetText == null) {
+	            return;
+	        }
+	        
+	        try {
+	        	
+	            double budget = Double.parseDouble(budgetText);
+	            if (budget < 0) {
+	                JOptionPane.showMessageDialog(null, "Invalid input. Please enter a positive number.");
+	                return;
+	            }
+	            
+	            
+	            Car[] carsWithinBudget = Main.dealership.carsWithinBudget(budget);
+	            if (carsWithinBudget.length == 0) {
+	                JOptionPane.showMessageDialog(null, "No cars found within the budget of " + budget + " SAR.");
+	            } 
+	            else {
+	                StringBuilder message = new StringBuilder();
+	                for (Car car : carsWithinBudget) {
+	                    if (car != null && car.getPrice() <= budget) {
+	                        message.append(car.toString()+ "\n--------------------").append("\n");
+	                    }
+	                }
+	                if (message.length() == 0) {
+	                    JOptionPane.showMessageDialog(null, "No cars found within the budget of " + budget );
+	                } 
+	                else {
+	                    JTextArea resultArea = new JTextArea(message.toString());
+	                     scrollPane = new JScrollPane(resultArea);
+	                    scrollPane.setPreferredSize(new Dimension(400, 300));
+	                    JOptionPane.showMessageDialog(null, scrollPane, "Cars within Budget", JOptionPane.PLAIN_MESSAGE);
+	                }
+	            }
+	        } catch (NumberFormatException ex) {
+	            JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid number.");
+	        }
+	    }
+	
+	
+	  
+	  
 
 }
