@@ -13,9 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-public class VehicleMenu extends JFrame implements ActionListener {
+public class VehicleMenu extends JFrame implements ActionListener { // this class for adding a vehicle gui..
     private JButton carButton, motorcycleButton, exitButton;
-
+   
     public VehicleMenu() {
         setTitle("Add a Vehicle");
         setSize(300, 200);
@@ -41,7 +41,7 @@ public class VehicleMenu extends JFrame implements ActionListener {
         } else if (e.getSource() == motorcycleButton) {
             addMotorcycleMenu();
         } else if (e.getSource() == exitButton) {
-            dispose(); // close the GUI windw.
+            dispose(); // closes the GUI windw.
         }
     }
 
@@ -86,7 +86,10 @@ public class VehicleMenu extends JFrame implements ActionListener {
 
             String type = carTypeField.getText();
 
-            Main.dealership.addVehicle(new Car(make, model, color, year, price, type));
+           if( Main.dealership.addVehicle(new Car(make, model, color, year, price, type)))
+            JOptionPane.showMessageDialog(null, "Car has been added successfully.");
+           else
+         	  JOptionPane.showMessageDialog(null, "Sorry, the car has not been added.");
         }
     }
 
@@ -132,7 +135,11 @@ public class VehicleMenu extends JFrame implements ActionListener {
 
             String handlebarType = handlebarTypeField.getText();
             
-            Main.dealership.addVehicle(new Motorcycle(make, model, color, year, price, handlebarType));
+            if(  Main.dealership.addVehicle(new Motorcycle(make, model, color, year, price, handlebarType)))
+            JOptionPane.showMessageDialog(null, "Motorcycle has been added successfully.");
+            else
+            	  JOptionPane.showMessageDialog(null, "Sorry, the motorcycle has not been added.");
+          
         }
     }
 
